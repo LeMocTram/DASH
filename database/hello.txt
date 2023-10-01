@@ -1,0 +1,23 @@
+"SELECT P.conversationID, P.username, C.conversation_name \
+                    FROM PARTICIPATE as P JOIN CONVERSATION as C on P.conversationID = C.conversationID\
+                    where P.conversationID in (select conversationID from PARTICIPATE\
+                                                where username = \"" +
+                      username + "\")\
+                    && P.username != \"" +
+                      username + "\"";
+
+
+// while (static_cast<int>(row[0][i]) != 0)
+    // {
+    //     numberOfParticipants = numberOfParticipants * 10;
+    //     numberOfParticipants += static_cast<int>(row[0][i]) - 48; // row[0][i] - '0'
+    //     i++;
+    // }
+std::cout << "Conversation ID: " << conversation[k].ID << std::endl;
+        std::cout << "Conversation name: " << conversation[k].name << std::endl;
+        std::cout << "Conversation participants: ";
+        for (auto i = conversation[k].participants.begin(); i != conversation[k].participants.end(); i++)
+        {
+            std::cout << *i << " | ";
+        }
+        std::cout << std::endl;

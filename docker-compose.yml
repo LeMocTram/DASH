@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+  mysql:
+    image: harrygooner/database
+    volumes:
+      - volume-database:/var/lib/mysql
+    container_name: run-database
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_USER: server
+      MYSQL_PASSWORD: 123456
+      
+
+  server:
+    image: khanhcba/server-img
+    container_name: run-server
+    ports:
+      - 12345:12345
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+    #command: ["/bin/bash", "-c", "sleep 5 && ./server"]
+
+volumes:
+  volume-database:
+    driver: local
+    #external: true

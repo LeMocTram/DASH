@@ -1,0 +1,20 @@
+FROM ubuntu:latest as client-image
+
+#Label of the images
+
+LABEL description="client container"
+
+#Update and install g++ on base image
+RUN apt-get -y update && apt-get install -y build-essential
+RUN apt-get install libssl-dev
+#Copy folder of souce code server to Docker images
+COPY . /client
+
+#Working directory
+WORKDIR /client
+
+#compile source with C++
+RUN g++ -o client client.cpp -lcrypto -pthread
+
+#Run the application
+CMD ["sh", "-c", "tail -f /dev/null"]

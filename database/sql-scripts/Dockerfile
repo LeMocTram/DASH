@@ -1,0 +1,14 @@
+FROM mysql
+
+LABEL description "DATABASE"
+
+ENV MYSQL_ROOT_PASSWORD=123
+ENV MYSQL_DATABASE CHATSERVICE
+ENV MYSQL_USER server
+ENV MYSQL_PASSWORD 123456
+
+COPY ../chatService.sql /docker-entrypoint-initdb.d
+
+WORKDIR ${PWD}
+
+
